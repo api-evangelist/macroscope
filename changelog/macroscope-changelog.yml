@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.macroscope.com/changelog
+docs: https://docs.macroscope.com/changelog
+description: >-
+  Structured capture of Macroscope's dated "Release Notes". Macroscope ships
+  weekly-dated product updates (not an API version scheme); the live changelog is
+  the source of truth. This records the most recent entries.
+scheme: dated-release-notes
+cadence: weekly
+current: '2026-07-17'
+entries:
+  - date: '2026-07-17'
+    highlights:
+      - Run Limits for Check Run Agents (set maxRuns in front matter to cap runs per PR)
+      - Adjust billing chart date range by dragging across the usage chart
+      - Code review improvements for Swift and Rust
+  - date: '2026-07-10'
+    highlights:
+      - Open-source models in Check Run Agents (kimi-k2-7-code, glm-5-2, minimax-m3, qwen-3-7-plus)
+      - GPT-5.6 models (Sol, Terra, Luna) in Check Run Agents
+      - Run filters for Check Run Agents (labels, authors, targets)
+      - PR metadata input mode (input: pr_metadata)
+      - Required status checks for Check Run Agents
+      - Improved cache hits for Check Run Agents
+  - date: '2026-07-03'
+    highlights:
+      - New models in Check Run Agents (fable-5, claude-sonnet-5)
+      - Check Run Agent usage table added to Billing (sortable/filterable, CSV export)
+  - date: '2026-06-26'
+    breaking: false
+    highlights:
+      - New Code Review pipeline that finds substantially more bugs (benchmarked ~71% more critical issues)

@@ -1,0 +1,18 @@
+generated: '2026-07-20'
+method: probed
+source: probe of Macroscope hosts on 2026-07-20
+description: >-
+  Result of probing standard /.well-known/ discovery endpoints across Macroscope
+  hosts. None are published; all probed paths returned 404. Recorded as valid
+  negative evidence.
+probes:
+  - {host: macroscope.com, path: /.well-known/security.txt, status: 404}
+  - {host: macroscope.com, path: /.well-known/openid-configuration, status: 404}
+  - {host: macroscope.com, path: /.well-known/oauth-authorization-server, status: 404}
+  - {host: macroscope.com, path: /.well-known/api-catalog, status: 404}
+  - {host: macroscope.com, path: /.well-known/ai-plugin.json, status: 404}
+  - {host: app.macroscope.com, path: /.well-known/security.txt, status: 404}
+  - {host: app.macroscope.com, path: /.well-known/openid-configuration, status: 404}
+  - {host: app.macroscope.com, path: /.well-known/oauth-authorization-server, status: 404}
+  - {host: docs.macroscope.com, path: /.well-known/security.txt, status: 404}
+files: []

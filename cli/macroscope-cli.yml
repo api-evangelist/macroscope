@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.macroscope.com/cli
+docs: https://docs.macroscope.com/cli
+description: >-
+  Macroscope's first-party CLI runs code review locally from your editor or
+  terminal and fixes issues before you push. The installer also drops a
+  Macroscope plugin into supported local coding agents (Claude Code, Codex,
+  Cursor, OpenCode). The binary is catalogued in packages/macroscope-packages.yml.
+repo: https://github.com/prassoai/macroscope-local
+install:
+  curl: 'curl -sSL https://raw.githubusercontent.com/prassoai/macroscope-local/main/install.sh | bash'
+  homebrew_tap: prassoai/homebrew-tap
+installer_actions:
+  - Installs the `macroscope` binary and adds it to your shell PATH
+  - Installs the Macroscope plugin for local Claude Code, Codex, Cursor, and OpenCode
+  - Starts a setup wizard to sign in and choose a workspace
+plugin_commands:
+  code_review:
+    claude_code: '/macroscope:codereview'
+    codex: '/macroscope:codereview'
+    cursor: '/codereview'
+    opencode: '/macroscope-codereview'
+    description: Start a Macroscope review on the current branch; watch findings, validate, fix confirmed issues, verify.
+  autoloop:
+    claude_code: '/macroscope:autoloop'
+    codex: '/macroscope:autoloop'
+    cursor: '/autoloop'
+    opencode: '/macroscope-autoloop'
+    description: >-
+      Local-only review-and-fix loop. Reviews the branch, fixes confirmed issues
+      in the working tree, commits, re-reviews to catch regressions; up to five
+      iterations or a clean pass. Does not touch GitHub or open PRs.

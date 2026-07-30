@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: derived
+source: >-
+  Derived from openapi/macroscope-webhook-api.json + docs at
+  https://docs.macroscope.com/api.md
+description: >-
+  Conformance assertions for cross-cutting standards against Macroscope's agent
+  webhook API. Assessed from the documented HTTP surface.
+standards:
+  - id: oauth2
+    conforms: false
+    evidence: API auth is a per-webhook apiKey header plus a short-lived bearer job token; no OAuth2 flows on the public API.
+  - id: oidc
+    conforms: false
+    evidence: No /.well-known/openid-configuration published (404 at probe time).
+  - id: rfc9457
+    conforms: false
+    evidence: Errors are plain HTTP status codes with short JSON bodies, not application/problem+json.
+  - id: rfc8594-deprecation
+    conforms: false
+    evidence: No Sunset/Deprecation response headers documented; a workflowId field is marked deprecated in docs only.
+  - id: async-job-polling
+    conforms: true
+    evidence: Documented 202-Accepted + jobToken + pollUrl pattern with Retry-After on in-progress polls.
+  - id: bearer-token-auth
+    conforms: true
+    evidence: Polling uses Authorization Bearer (JWT) job tokens.
+  - id: idempotency
+    conforms: false
+    evidence: No idempotency key documented for the trigger endpoint.
+  - id: pagination
+    conforms: false
+    evidence: No list/collection endpoints; the API is a single trigger + single poll.

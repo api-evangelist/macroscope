@@ -1,0 +1,12 @@
+generated: '2026-07-20'
+method: generated
+source: https://docs.macroscope.com/api.md
+description: >-
+  Packaged Agent Skills for Macroscope, grounded in the real operationIds of the
+  agent webhook API (openapi/macroscope-webhook-api.json).
+skills:
+  - name: macroscope-weekly-changes-digest
+    file: macroscope-weekly-changes-digest.md
+    api: Macroscope Agent Webhook API
+    operations: [queryAgentWebhookTrigger, pollAgentJob]
+    summary: Trigger the agent for a recent-changes summary and deliver to Slack or poll for the result.

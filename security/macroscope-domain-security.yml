@@ -1,0 +1,22 @@
+generated: '2026-07-20'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: docs.macroscope.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 22 11:32:04 2026 GMT
+  hsts: true
+  hsts_max_age: 63072000
+- host: hooks.macroscope.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep  7 10:59:34 2026 GMT
+  hsts: null
+domains:
+- domain: macroscope.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject

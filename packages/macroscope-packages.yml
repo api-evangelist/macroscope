@@ -1,0 +1,24 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.macroscope.com/cli
+description: >-
+  First-party distributable client tooling for Macroscope. Macroscope ships a
+  CLI (the `macroscope` binary) distributed via an install script and a Homebrew
+  tap out of its GitHub org (prassoai). No first-party language SDK packages
+  (npm/PyPI/Maven/NuGet/RubyGems/crates) were found; the public API surface is a
+  single documented HTTP webhook, called directly with curl. The CLI command
+  surface is detailed in cli/macroscope-cli.yml.
+packages:
+  - name: macroscope
+    kind: cli
+    official: true
+    language: shell/go
+    registry: github-releases
+    repo: https://github.com/prassoai/macroscope-local
+    install:
+      curl: 'curl -sSL https://raw.githubusercontent.com/prassoai/macroscope-local/main/install.sh | bash'
+      homebrew_tap: prassoai/homebrew-tap
+    description: Local Macroscope CLI + plugin for Claude Code, Codex, Cursor, and OpenCode.
+sdks:
+  found: false
+  note: No first-party language SDK client libraries published as of 2026-07-20.

@@ -1,0 +1,35 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.macroscope.com/api.md
+description: >-
+  Macroscope's event/webhook surface. Macroscope does not publish an AsyncAPI
+  document, but it documents both an inbound trigger webhook and outbound result
+  delivery, plus Macros that emit results to a webhook on schedule or in response
+  to code events. Captured here as a Webhooks catalog (no AsyncAPI to save
+  verbatim).
+inbound:
+  - name: query-agent-webhook-trigger
+    direction: inbound (you call Macroscope)
+    method: POST
+    url: https://hooks.macroscope.com/api/v1/workspaces/{workspaceType}/{workspaceId}/query-agent-webhook-trigger
+    auth: X-Webhook-Secret header
+    body: '{ query, responseDestination?, timezone? }'
+    detail: openapi/macroscope-webhook-api.json
+outbound:
+  - name: agent-result-delivery
+    direction: outbound (Macroscope calls you)
+    method: POST
+    to: an allowlisted HTTPS webhookUrl supplied in responseDestination
+    payload: '{ query, response, workflowId }'
+    note: External delivery URLs must be allowlisted by a GitHub org admin.
+triggers:
+  macros:
+    doc: https://docs.macroscope.com/macros
+    events:
+      - Scheduled (daily, weekly, biweekly)
+      - On New Commit (filter by repo/branch)
+      - On New PR (filter by repo)
+    delivery: Slack channel or an outbound webhook
+asyncapi_spec:
+  found: false
+  note: No AsyncAPI document is published; this is a documented webhook surface only.

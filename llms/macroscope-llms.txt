@@ -1,0 +1,36 @@
+# Macroscope
+
+## Docs
+
+- [Macroscope's Agent](https://docs.macroscope.com/agent.md): An AI agent that knows your codebase, git history, and connected tools
+- [API](https://docs.macroscope.com/api.md): Trigger Macroscope's agent programmatically via webhooks
+- [Approvability](https://docs.macroscope.com/approvability.md): Auto-approve low-risk PRs that pass code review
+- [Areas](https://docs.macroscope.com/areas.md): Group code activity into high-level categories that match how your team thinks about work
+- [Backfilling](https://docs.macroscope.com/backfilling.md): How Macroscope processes historical data from your repos
+- [Code Review](https://docs.macroscope.com/bug-detection-and-fixes.md): Automatic bug detection and fixes on every pull request
+- [Cancel Subscription](https://docs.macroscope.com/cancel-subscription.md): Learn how to cancel your Macroscope subscription
+- [Release Notes](https://docs.macroscope.com/changelog.md)
+- [Check Run Agents](https://docs.macroscope.com/check-run-agents.md): Custom agentic check runs that enforce your rules and take action on every PR
+- [Models & Pricing](https://docs.macroscope.com/check-run-agents/models-and-pricing.md): Pick the model behind a Check Run Agent, tune reasoning and effort, and see how usage is billed
+- [CLI](https://docs.macroscope.com/cli.md): Run Macroscope locally from your editor or terminal and fix issues before you push
+- [Commit Summaries](https://docs.macroscope.com/commit-summaries.md): Searchable feed of all commit activity across repositories
+- [Contact Us](https://docs.macroscope.com/contact.md)
+- [Custom Instructions](https://docs.macroscope.com/custom-instructions.md): Extend Macroscope's correctness review with your team's domain expertise, committed to your repo and scoped to the files that matter.
+- [Fix It For Me](https://docs.macroscope.com/fix-it-for-me.md): Macroscope can create branches, commit fixes, and open PRs automatically
+- [Unlock Value from Day One](https://docs.macroscope.com/hit-the-ground-running.md): Now that Macroscope is set up and your integrations are connected, here are some quick wins to help you get value immediately
+- [Integrations](https://docs.macroscope.com/integrations.md): Connect your tools to give the agent more context and capabilities
+- [Macros](https://docs.macroscope.com/macros.md): Automate workflows on a schedule or in response to code events. Deliver results to Slack or via webhook.
+- [Pricing](https://docs.macroscope.com/pricing.md): Usage-based pricing for Agent, Code Review, and Status
+- [Productivity Insights](https://docs.macroscope.com/productivity.md): See how engineering time is being spent and where progress is happening
+- [PR Summaries](https://docs.macroscope.com/pull-request-descriptions.md): Automatic summaries for every pull request, grounded in codebase context and connected tools
+- [Settings](https://docs.macroscope.com/settings.md): Configure Macroscope for your team
+- [Getting Started](https://docs.macroscope.com/setup-instructions.md): Get Macroscope connected and running
+- [Welcome to Macroscope](https://docs.macroscope.com/welcome.md): Macroscope connects to your codebase and workflow tools to review code, answer questions, and take action.
+
+## OpenAPI Specs
+
+- [openapi](https://docs.macroscope.com/api-reference/openapi.json)
+
+## Optional
+
+- [Go to Macroscope](https://app.macroscope.com/)

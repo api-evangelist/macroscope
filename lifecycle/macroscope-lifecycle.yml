@@ -1,0 +1,34 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.macroscope.com/api.md
+description: >-
+  Lifecycle and versioning posture for Macroscope's agent webhook API and
+  product. The HTTP API is versioned in the URI path (v1). No public
+  hosted status page or formal deprecation-header (RFC 8594) policy was found;
+  release notes are published as a dated changelog.
+versioning:
+  style: URI path version
+  current: v1
+  base: https://hooks.macroscope.com/api/v1/
+deprecations:
+  - field: workflowId
+    where: trigger response and result payload
+    status: deprecated
+    note: Documented as deprecated; no replacement field required for the core flow.
+changelog:
+  published: true
+  cadence: weekly-dated release notes
+  url: https://docs.macroscope.com/changelog
+  detail: changelog/macroscope-changelog.yml
+status_page:
+  found: false
+  note: No public hosted status page discovered at probe time.
+support:
+  email: support@macroscope.com
+  contact: https://docs.macroscope.com/contact
+pricing:
+  model: usage-based (prepaid balance, Stripe-metered)
+  url: https://docs.macroscope.com/pricing
+  note: >-
+    New customers on usage-based pricing since 2026-03-27; all existing
+    customers migrated 2026-04-27.

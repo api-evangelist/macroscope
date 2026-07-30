@@ -1,0 +1,14 @@
+{
+  "provider": "macroscope",
+  "sources": [
+    "macroscope-workspaces-api-openapi.yml"
+  ],
+  "outputs": [
+    "macroscope-workspaces-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

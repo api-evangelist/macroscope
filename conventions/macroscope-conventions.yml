@@ -1,0 +1,61 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.macroscope.com/api.md
+description: >-
+  Cross-cutting runtime semantics for Macroscope's agent webhook API: how you
+  authenticate, how the asynchronous job/poll pattern works, how results are
+  delivered, and how errors and retries are signaled. These conventions apply to
+  the whole API rather than any single operation.
+base_url: https://hooks.macroscope.com
+api_style: >-
+  Asynchronous job API over HTTPS. JSON requests and responses. A trigger
+  enqueues agent work and returns a job token; results arrive by push
+  (Slack/webhook) or by pulling (polling).
+authentication:
+  trigger: X-Webhook-Secret header (per-webhook API key)
+  polling: Authorization Bearer job token (JWT, ~1 hour TTL)
+  detail: authentication/macroscope-authentication.yml
+async_jobs:
+  supported: true
+  pattern: >-
+    POST the trigger endpoint -> 202 Accepted with { jobToken, pollUrl,
+    workflowId(deprecated) }. If no responseDestination is supplied, poll the
+    pollUrl with the job token until status is no longer "running".
+  poll_response_states:
+    - {status: running, http: 202, note: carries a Retry-After header (seconds)}
+    - {status: completed, http: 200, body: '{ status, response }'}
+    - {status: failed, http: 200, body: '{ status: failed }'}
+  token_ttl: ~1 hour; expired token returns 403 and requires re-trigger.
+result_delivery:
+  push_slack: responseDestination.slackChannelId (optionally slackThreadTs)
+  push_webhook: >-
+    responseDestination.webhookUrl (must be an allowlisted HTTPS URL). Macroscope
+    POSTs { query, response, workflowId } to the destination.
+  pull: omit responseDestination, then poll.
+retry_signaling:
+  header: Retry-After (seconds) on 202 poll responses
+  guidance: wait the suggested interval before polling again
+localization:
+  timezone: >-
+    Optional IANA timezone in the request body (e.g. America/Los_Angeles);
+    affects date references the agent resolves in the query.
+versioning:
+  style: URI path version
+  current: v1 (all endpoints under /api/v1/)
+  deprecated_fields: workflowId (in trigger response and result payload)
+  detail: lifecycle/macroscope-lifecycle.yml
+error_envelope:
+  shape: >-
+    Plain HTTP status codes with short JSON bodies; not RFC 9457
+    problem+json. See errors/macroscope-problem-types.yml.
+  detail: errors/macroscope-problem-types.yml
+idempotency:
+  supported: false
+  note: >-
+    No idempotency key is documented for the trigger endpoint; each POST
+    enqueues a new agent job.
+rate_limiting:
+  documented: false
+  note: >-
+    No explicit rate-limit headers are documented; Agent usage is metered and
+    billed per credit (see pricing).

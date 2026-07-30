@@ -1,0 +1,42 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.macroscope.com/api.md
+docs: https://docs.macroscope.com/api.md
+description: >-
+  Authentication profile for Macroscope's agent webhook API. The API uses two
+  distinct credentials at two stages: a per-webhook API key (sent as the
+  X-Webhook-Secret header) to trigger the agent, and a short-lived signed job
+  token (sent as an Authorization: Bearer header) to poll for that one job's
+  result. There is no OAuth. Keys are created per webhook in the web app.
+base_url: https://hooks.macroscope.com
+schemes:
+  - id: webhookSecret
+    type: apiKey
+    in: header
+    name: X-Webhook-Secret
+    used_by: POST query-agent-webhook-trigger
+    description: >-
+      Per-webhook API key created in Settings -> Connections -> Webhooks. Shown
+      once at creation and cannot be retrieved later. A workspace can have
+      multiple named webhooks each with its own key.
+    rotation: Create a new webhook to obtain a new key; keys are not re-displayed.
+  - id: jobToken
+    type: http
+    scheme: bearer
+    bearer_format: JWT
+    used_by: GET query-agent-jobs (polling)
+    description: >-
+      Signed token returned by the trigger response (jobToken). Authorizes reads
+      of a single job's result and is sent as Authorization: Bearer. Valid for
+      about one hour; if it expires before the job finishes, polling returns 403
+      and the query must be re-triggered for a fresh token.
+    scope: single job / single workspace
+notes:
+  - >-
+    External delivery URLs must be allowlisted (Settings -> Connections ->
+    Webhooks -> Allowed External URLs) and must be HTTPS; only GitHub
+    organization admins can manage the list.
+  - >-
+    Product integrations (GitHub, Slack, Jira, Linear, etc.) authenticate via
+    their own OAuth connect flows in Settings -> Connections; those are not part
+    of the public HTTP API surface.

@@ -1,0 +1,20 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.macroscope.com/api.md
+description: >-
+  Error/status catalog for Macroscope's agent webhook API, transcribed from the
+  documented error-code tables. Errors are conveyed as HTTP status codes with
+  short JSON bodies; the API does not use RFC 9457 application/problem+json.
+format: http-status
+envelope: 'Short JSON body, e.g. { "status": "failed" } on the poll endpoint.'
+trigger_errors:
+  - {code: 202, meaning: Query accepted.}
+  - {code: 400, meaning: Malformed request or missing query., remediation: Send a JSON body with a non-empty "query" string.}
+  - {code: 401, meaning: Missing or invalid X-Webhook-Secret., remediation: Send the per-webhook API key in the X-Webhook-Secret header.}
+  - {code: 403, meaning: Wrong workspace, or webhook URL not allowlisted., remediation: Use the correct workspace trigger URL; allowlist any external delivery URL (HTTPS).}
+polling_errors:
+  - {code: 200, meaning: Job finished (completed or failed).}
+  - {code: 202, meaning: Still running; retry after the Retry-After interval.}
+  - {code: 401, meaning: Missing or invalid job token., remediation: Send the jobToken as an Authorization Bearer header.}
+  - {code: 403, meaning: Job token expired, or does not match this workspace., remediation: Re-trigger the query to obtain a fresh job token (tokens live ~1 hour).}
+  - {code: 404, meaning: Job not found.}

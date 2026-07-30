@@ -1,0 +1,30 @@
+overlay: 1.0.0
+info:
+  title: Macroscope Agent Webhook API - API Evangelist enrichment overlay
+  version: 1.0.0
+x-provenance:
+  generated: '2026-07-20'
+  method: generated
+  source: >-
+    Enhancements over openapi/macroscope-webhook-api.json, itself generated from
+    https://docs.macroscope.com/api.md
+extends: ../openapi/macroscope-webhook-api.json
+actions:
+  - target: $.info
+    description: Tag the spec with API Evangelist enrichment metadata.
+    update:
+      x-apievangelist:
+        provider: macroscope
+        enriched: '2026-07-20'
+        notes: >-
+          The vendor-published /api-reference/openapi.json is a Mintlify sample
+          template; this spec was reconstructed from the prose API docs.
+  - target: "$.paths['/api/v1/workspaces/{workspaceType}/{workspaceId}/query-agent-webhook-trigger'].post"
+    description: Annotate the trigger operation with prerequisite and async-pattern notes.
+    update:
+      x-prerequisite: Status must be configured and backfill finished before the API will run.
+      x-async: Returns 202 with a jobToken and pollUrl; results are pushed to Slack/webhook or pulled via polling.
+  - target: "$.paths['/api/v1/workspaces/{workspaceType}/{workspaceId}/query-agent-jobs'].get"
+    description: Annotate the poll operation with token lifetime.
+    update:
+      x-token-ttl: Job token is valid ~1 hour; expired tokens return 403.

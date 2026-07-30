@@ -1,0 +1,249 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Macroscope Agent Webhook API",
+    "version": "v1",
+    "description": "Inbound webhook API that triggers Macroscope's agent programmatically over HTTP. The same agent used in Slack and GitHub, invoked via HTTP so it can be called from CI pipelines, scripts, cron jobs, or any other system. Results are delivered either by push (Slack channel or external URL) or by pull (poll for the result with the returned job token). Faithfully generated from the published documentation at https://docs.macroscope.com/api.md; the operations, headers, request/response shapes, and status codes are transcribed from that page. The vendor's published /api-reference/openapi.json is a Mintlify sample template (Plant Store) and does not describe this API.",
+    "contact": {
+      "name": "Macroscope Support",
+      "email": "support@macroscope.com",
+      "url": "https://docs.macroscope.com/contact"
+    },
+    "x-provenance": {
+      "generated": "2026-07-20",
+      "method": "generated",
+      "source": "https://docs.macroscope.com/api.md"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://hooks.macroscope.com",
+      "description": "Macroscope agent webhook host"
+    }
+  ],
+  "security": [
+    {
+      "webhookSecret": []
+    }
+  ],
+  "paths": {
+    "/api/v1/workspaces/{workspaceType}/{workspaceId}/query-agent-webhook-trigger": {
+      "post": {
+        "operationId": "queryAgentWebhookTrigger",
+        "summary": "Trigger the agent",
+        "description": "POST a query to the agent. Returns 202 Accepted with a job token and poll URL. Optionally deliver the result to a Slack channel/thread or an allowlisted external webhook URL; omit responseDestination to retrieve the result by polling. Requires that Status is configured and backfill has finished.",
+        "security": [
+          {
+            "webhookSecret": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TriggerRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Query accepted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TriggerAccepted"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request or missing query."
+          },
+          "401": {
+            "description": "Missing or invalid X-Webhook-Secret."
+          },
+          "403": {
+            "description": "Wrong workspace, or webhook URL not allowlisted."
+          }
+        }
+      }
+    },
+    "/api/v1/workspaces/{workspaceType}/{workspaceId}/query-agent-jobs": {
+      "get": {
+        "operationId": "pollAgentJob",
+        "summary": "Poll for an agent job result",
+        "description": "Poll for the result of a triggered job. Send the jobToken returned by the trigger as an Authorization: Bearer header. While running the response carries a Retry-After header (seconds). The job token is valid for about one hour.",
+        "security": [
+          {
+            "jobToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "workspaceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Job finished (completed or failed).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobResult"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Still running; retry after the Retry-After interval.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before polling again.",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "const": "running"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid job token."
+          },
+          "403": {
+            "description": "Job token expired, or doesn't match this workspace."
+          },
+          "404": {
+            "description": "Job not found."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "webhookSecret": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Webhook-Secret",
+        "description": "Per-webhook API key created in Settings -> Connections -> Webhooks. Shown once and cannot be retrieved later."
+      },
+      "jobToken": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "Short-lived (about one hour) signed job token returned by the trigger, authorizing reads of that one job's result."
+      }
+    },
+    "schemas": {
+      "TriggerRequest": {
+        "type": "object",
+        "required": [
+          "query"
+        ],
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "The question to ask the agent."
+          },
+          "responseDestination": {
+            "type": "object",
+            "description": "Where to deliver the results. Omit to retrieve by polling.",
+            "properties": {
+              "slackChannelId": {
+                "type": "string"
+              },
+              "slackThreadTs": {
+                "type": "string"
+              },
+              "webhookUrl": {
+                "type": "string",
+                "description": "Must be an allowlisted HTTPS URL."
+              }
+            }
+          },
+          "timezone": {
+            "type": "string",
+            "description": "IANA timezone (e.g. America/Los_Angeles). Affects date references in the query."
+          }
+        }
+      },
+      "TriggerAccepted": {
+        "type": "object",
+        "properties": {
+          "jobToken": {
+            "type": "string",
+            "description": "Signed token (valid ~1 hour) authorizing you to read this one job's result."
+          },
+          "pollUrl": {
+            "type": "string",
+            "description": "Where to poll for the result."
+          },
+          "workflowId": {
+            "type": "string",
+            "deprecated": true
+          }
+        }
+      },
+      "JobResult": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "completed",
+              "failed"
+            ]
+          },
+          "response": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
