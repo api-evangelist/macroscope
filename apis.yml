@@ -1,9 +1,32 @@
 aid: macroscope
 name: Macroscope
-description: Macroscope is a company surfaced as a portfolio company of lightspeed-venture-partners and
-  added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  Macroscope is an AI code-intelligence platform (GitHub org prassoai) that
+  connects to a team's codebase and workflow tools to review pull requests,
+  answer questions, and take action. Its three surfaces are an Agent (query the
+  codebase and trigger actions via Slack, GitHub, or an HTTP API), Code Review
+  (automatic bug detection, PR descriptions, and fixes on every pull request),
+  and Status (commit summaries, area classification, productivity insights, and
+  sprint reports). Macroscope integrates with GitHub, Slack, Jira, Linear,
+  BigQuery, PostHog, LaunchDarkly, and GCP Cloud Logging, ships a local CLI plus
+  plugins for Claude Code, Codex, Cursor, and OpenCode, and exposes a public
+  agent webhook API. Billing is usage-based (prepaid, Stripe-metered). Macroscope
+  is backed by Lightspeed Venture Partners. Enriched into the API Evangelist
+  network from its public developer documentation.
 url: https://raw.githubusercontent.com/api-evangelist/macroscope/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://macroscope.com/assets/macroscop-logo-black.svg
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -12,12 +35,79 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-apis: []
+- AI Code Review
+- Code Intelligence
+- Developer Tools
+- Pull Requests
+- Agent
+- Webhooks
+- DevOps
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: macroscope:macroscope-workspaces-api
+  name: Macroscope Workspaces API
+  description: The Workspaces API from Macroscope — 2 operation(s) for workspaces.
+  humanURL: https://docs.macroscope.com/api
+  baseURL: https://hooks.macroscope.com
+  tags:
+  - Workspaces
+  properties:
+  - type: OpenAPI
+    url: openapi/macroscope-workspaces-api-openapi.yml
+  - type: Authentication
+    url: authentication/macroscope-authentication.yml
+  - type: Conventions
+    url: conventions/macroscope-conventions.yml
+  - type: ErrorCatalog
+    url: errors/macroscope-problem-types.yml
+  - type: Conformance
+    url: conformance/macroscope-conformance.yml
+  - type: Webhooks
+    url: asyncapi/macroscope-webhooks.yml
+common:
+- type: DomainSecurity
+  url: security/macroscope-domain-security.yml
+- type: DeveloperPortal
+  url: https://docs.macroscope.com
+- type: Documentation
+  url: https://docs.macroscope.com
+- type: APIReference
+  url: https://docs.macroscope.com/api
+- type: GettingStarted
+  url: https://docs.macroscope.com/setup-instructions
+- type: Pricing
+  url: https://docs.macroscope.com/pricing
+- type: SignUp
+  url: https://app.macroscope.com
+- type: GitHubOrganization
+  url: https://github.com/prassoai
+- type: Support
+  url: https://docs.macroscope.com/contact
+- type: ChangeLog
+  url: https://docs.macroscope.com/changelog
+- type: ChangeLog
+  url: changelog/macroscope-changelog.yml
+- type: Lifecycle
+  url: lifecycle/macroscope-lifecycle.yml
+- type: LLMsTxt
+  url: llms/macroscope-llms.txt
+- type: Packages
+  url: packages/macroscope-packages.yml
+- type: CLI
+  url: cli/macroscope-cli.yml
+- type: WellKnown
+  url: well-known/macroscope-well-known.yml
+- type: AgentSkill
+  url: skills/macroscope-weekly-changes-digest.md
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 17
+  pass: local-v1
