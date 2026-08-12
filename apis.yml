@@ -72,6 +72,10 @@ apis:
   - type: Webhooks
     url: asyncapi/macroscope-webhooks.yml
 common:
+- type: MCPServer
+  url: mcp/macroscope-mcp.yml
+- type: Overlay
+  url: overlays/macroscope-webhook-api-overlay.yaml
 - type: DomainSecurity
   url: security/macroscope-domain-security.yml
 - type: DeveloperPortal
