@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Macroscope Agent Webhook Workspaces API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Webhook-Secret",
+      "value": "{{X-Webhook-Secret}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workspaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Trigger the agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://hooks.macroscope.com/api/v1/workspaces/:workspaceType/:workspaceId/query-agent-webhook-trigger",
+            "params": [
+              {
+                "name": "workspaceType",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-Webhook-Secret",
+              "value": "{{X-Webhook-Secret}}",
+              "placement": "header"
+            }
+          },
+          "docs": "POST a query to the agent. Returns 202 Accepted with a job token and poll URL. Optionally deliver the result to a Slack channel/thread or an allowlisted external webhook URL; omit responseDestination to retrieve the result by polling. Requires that Status is configured and backfill has finished."
+        },
+        {
+          "info": {
+            "name": "Poll for an agent job result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://hooks.macroscope.com/api/v1/workspaces/:workspaceType/:workspaceId/query-agent-jobs",
+            "params": [
+              {
+                "name": "workspaceType",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Poll for the result of a triggered job. Send the jobToken returned by the trigger as an Authorization: Bearer header. While running the response carries a Retry-After header (seconds). The job token is valid for about one hour."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

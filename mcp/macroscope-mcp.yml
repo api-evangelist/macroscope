@@ -1,27 +1,30 @@
 generated: '2026-07-20'
 method: derived
-source: >-
-  Derived from openapi/macroscope-webhook-api.json (documented at
-  https://docs.macroscope.com/api.md). No official hosted/remote MCP server was
-  found for Macroscope.
+source: Derived from openapi/macroscope-webhook-api.json (documented at https://docs.macroscope.com/api.md).
+  No official hosted/remote MCP server was found for Macroscope.
 status: candidate
-description: >-
-  Candidate MCP tool surface derived from Macroscope's documented agent webhook
-  API. Macroscope publishes local plugins for Claude Code, Codex, Cursor, and
-  OpenCode (see cli/macroscope-cli.yml) but no official Model Context Protocol
-  server; this is a suggested tool mapping, not a shipped server.
+description: Candidate MCP tool surface derived from Macroscope's documented agent webhook API. Macroscope
+  publishes local plugins for Claude Code, Codex, Cursor, and OpenCode (see cli/macroscope-cli.yml) but
+  no official Model Context Protocol server; this is a suggested tool mapping, not a shipped server.
 official_server:
   found: false
 server:
   transport: not-published
 tools:
-  - name: query_agent
-    from_operation: queryAgentWebhookTrigger
-    method: POST
-    path: /api/v1/workspaces/{workspaceType}/{workspaceId}/query-agent-webhook-trigger
-    description: Trigger Macroscope's agent with a natural-language query about the codebase and connected tools.
-  - name: poll_agent_job
-    from_operation: pollAgentJob
-    method: GET
-    path: /api/v1/workspaces/{workspaceType}/{workspaceId}/query-agent-jobs
-    description: Poll for the result of a previously triggered agent job using the returned job token.
+- name: query_agent
+  from_operation: queryAgentWebhookTrigger
+  method: POST
+  path: /api/v1/workspaces/{workspaceType}/{workspaceId}/query-agent-webhook-trigger
+  description: Trigger Macroscope's agent with a natural-language query about the codebase and connected
+    tools.
+- name: poll_agent_job
+  from_operation: pollAgentJob
+  method: GET
+  path: /api/v1/workspaces/{workspaceType}/{workspaceId}/query-agent-jobs
+  description: Poll for the result of a previously triggered agent job using the returned job token.
+deployment:
+  mode: none
+  verified: derived
+  tools: 2
+  checked: '2026-08-12'
+  source: catalog MCP census
