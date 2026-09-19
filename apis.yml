@@ -79,6 +79,8 @@ apis:
   humanURL: https://docs.macroscope.com/api
   baseURL: https://hooks.macroscope.com
   tags:
+  - Workspace
+  tags_raw:
   - Workspaces
   properties:
   - type: OpenAPI
