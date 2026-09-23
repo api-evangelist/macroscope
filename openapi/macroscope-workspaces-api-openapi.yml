@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Macroscope Agent Webhook Workspaces API
   version: v1
-  description: Inbound webhook API that triggers Macroscope's agent programmatically over HTTP. The same agent used in Slack and GitHub, invoked via HTTP so it can be called from CI pipelines, scripts, cron jobs, or any other system. Results are delivered either by push (Slack channel or external URL) or by pull (poll for the result with the returned job token). Faithfully generated from the published documentation at https://docs.macroscope.com/api.md; the operations, headers, request/response shapes, and status codes are transcribed from that page. The vendor's published /api-reference/openapi.json is a Mintlify sample template (Plant Store) and does not describe this API.
+  description: Inbound webhook API that triggers Macroscope's agent programmatically over HTTP.
   contact:
     name: Macroscope Support
     email: support@macroscope.com
@@ -108,16 +108,6 @@ paths:
       - Workspaces
 components:
   schemas:
-    JobResult:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - completed
-          - failed
-        response:
-          type: string
     TriggerAccepted:
       type: object
       properties:
@@ -152,6 +142,16 @@ components:
         timezone:
           type: string
           description: IANA timezone (e.g. America/Los_Angeles). Affects date references in the query.
+    JobResult:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - completed
+          - failed
+        response:
+          type: string
   securitySchemes:
     webhookSecret:
       type: apiKey

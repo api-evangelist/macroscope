@@ -1,7 +1,7 @@
 {
   "provider": "macroscope",
   "sources": [
-    "macroscope-workspaces-api-openapi.yml"
+    "_original/macroscope-webhook-api.json"
   ],
   "outputs": [
     "macroscope-workspaces-api-openapi.yml"
@@ -9,6 +9,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "macroscope-webhook-api.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "macroscope-webhook-api.json: tagged paths POST /api/v1/workspaces/{workspaceType}/{workspaceId}/query-agent-webhook-trigger -> Workspaces",
+    "macroscope-webhook-api.json: tagged paths GET /api/v1/workspaces/{workspaceType}/{workspaceId}/query-agent-jobs -> Workspaces",
+    "macroscope-webhook-api.json: declared missing tag: Workspaces",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "macroscope-workspaces-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
