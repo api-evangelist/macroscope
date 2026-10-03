@@ -108,6 +108,16 @@ paths:
       - Workspaces
 components:
   schemas:
+    JobResult:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - completed
+          - failed
+        response:
+          type: string
     TriggerAccepted:
       type: object
       properties:
@@ -142,16 +152,6 @@ components:
         timezone:
           type: string
           description: IANA timezone (e.g. America/Los_Angeles). Affects date references in the query.
-    JobResult:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - completed
-          - failed
-        response:
-          type: string
   securitySchemes:
     webhookSecret:
       type: apiKey
