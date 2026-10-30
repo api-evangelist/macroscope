@@ -64,6 +64,117 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Macroscope is a company surfaced as a portfolio company of lightspeed-venture-partners and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Macroscope is an AI code-intelligence platform (GitHub org prassoai) that connects to a team's codebase and workflow tools to review pull requests, answer questions, and take action. Its three surfaces are an Agent (query the codebase and trigger actions via Slack, GitHub, or an HTTP API), Code Review (automatic bug detection, PR descriptions, and fixes on every pull request), and Status (commit summaries, area classification, productivity insights, and sprint reports). Macroscope integrates with GitHub, Slack, Jira, Linear, BigQuery, PostHog, LaunchDarkly, and GCP Cloud Logging, ships a local CLI plus plugins for Claude Code, Codex, Cursor, and OpenCode, and exposes a public agent webhook API. Billing is usage-based (prepaid, Stripe-metered). Macroscope is backed by Lightspeed Venture Partners. Enriched into the API Evangelist network from its public developer documentation.
 
-Backed by: lightspeed-venture-partners
+**Areas:** Company · AI Code Review · Code Intelligence · Developer Tools · Pull Requests · Agents · Webhook · DevOps
+
+## Macroscope on APIs.io
+
+Everything profiled for Macroscope is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/macroscope/](https://apis.io/providers/macroscope/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Macroscope Workspaces API](https://apis.io/apis/macroscope/macroscope-workspaces-api/) — The Workspaces API from Macroscope — 2 operation(s) for workspaces.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Macroscope Webhooks](https://apis.io/asyncapis/macroscope/macroscope-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [macroscope-mcp.yml](https://apis.io/servers/macroscope/macroscope-mcp-yml/)
+
+#### Collections (1)
+
+Postman and Open Collection request collections.
+
+- [Macroscope Agent Webhook Workspaces API](https://apis.io/collections/macroscope/open-macroscope-workspaces-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Macroscope Webhook Api Overlay](https://apis.io/overlays/macroscope/macroscope-webhook-api-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Macroscope Authentication](https://apis.io/security/macroscope/macroscope-authentication/)
+- [Macroscope Domain Security](https://apis.io/security/macroscope/macroscope-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.macroscope.com/)
+- [Documentation](https://docs.macroscope.com)
+- [Getting started](https://docs.macroscope.com/setup-instructions)
+- [API reference](https://docs.macroscope.com/api)
+- [Pricing](https://docs.macroscope.com/pricing)
+- [Sign up](https://app.macroscope.com)
+- [Support](https://docs.macroscope.com/contact)
+- [Changelog](https://docs.macroscope.com/changelog)
+- [Blog](https://www.macroscope.com/blog/)
+- [GitHub](https://github.com/prassoai)
+
+## API Evangelist rating
+
+**Kin Score 34.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 22.1 |
+| Contract governance | 4.5 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 66.1 |
+| Access clarity | 23.7 |
+
+**Agent readiness 28.6** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | verified |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/macroscope/](https://apis.io/providers/macroscope/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Macroscope: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/macroscope/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
